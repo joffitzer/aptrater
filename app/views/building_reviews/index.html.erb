@@ -1,0 +1,9 @@
+<h1>All Reviews:</h1>
+<p><%= link_to "Review a Building", new_building_review_path %></p>
+<%@building_reviews.each do |review|%>
+<p>Review: <%= link_to review.title, building_review_path(review)%></p>
+<p>Building: <%= link_to review.building.address, building_path(review.building)%></p>
+<p>Reviewed By: <%= link_to review.tenant.username, tenant_path(review.tenant)%></p>
+<hr>
+
+<% end %>

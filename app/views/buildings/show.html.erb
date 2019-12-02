@@ -1,0 +1,21 @@
+<h1><%= @building.address %> </h1>
+<h2> Neighborhood: <%= @building.neighborhood %> </h2>
+<h3> Number of Apartments: <%= @building.apt_count %> </h3>
+<h4> <%= @building.description %> </h4>
+
+<h3>Reviews:</h3>
+
+<% @reviews.each do |breview| %>
+Written by: <%= link_to breview.tenant.username, tenant_path(breview.tenant) %><br>
+Title: <%= link_to breview.title, building_review_path(breview) %><br>
+Review: <%= breview.content %><br>
+<hr>
+<% end %>
+
+<p> <%= link_to "Review this Building", new_building_review_path %> </p>
+
+<p> <%= link_to "Update Building Information", edit_building_path(@building) %> </p>
+
+<p> <%= link_to "View all Buildings", buildings_path %> </p>
+
+<%= button_to "Report Building as Closed", { action: "delete", id: @building.id }, method: :delete %>

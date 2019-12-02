@@ -1,0 +1,6 @@
+<h1>All Buildings:</h1>
+<p><%= link_to "Don't see your building? Click here to add it to the directory", new_building_path %></p>
+<%@buildings.each do |building|%>
+<h5><%= link_to building.address, building_path(building) %>
+<% end %>
+

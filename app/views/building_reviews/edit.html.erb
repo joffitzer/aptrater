@@ -1,0 +1,34 @@
+<h1>Edit this review: <%= %></h1>
+<%= form_for @building_review do |f| %>
+
+  <p>Building: <%= collection_select(:building_review, :building_id, Building.all, :id, :address, prompt: true) %></p>
+
+  <p>Select your username: <%= collection_select(:building_review, :tenant_id, Tenant.all, :id, :username, prompt: true) %></p>
+
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br />
+  <br>
+
+  <%= f.label :content %>:
+  <%= f.text_area :content %><br />
+  <br>
+
+  <%= f.label :cleanliness, "Cleanliness Rating" %>:
+  <%= f.number_field :cleanliness %><br />
+  <br>
+
+   <%= f.label :super, "Super Rating" %>:
+  <%= f.number_field :super %><br />
+  <br>
+
+   <%= f.label :noise, "Noise Rating" %>:
+  <%= f.number_field :noise %><br />
+  <br>
+
+
+   <%= f.label :renew, "Would you renew? Check if yes" %>
+  <%= f.check_box :renew %><br />
+  <br>
+
+  <%= f.submit %>
+<% end %>

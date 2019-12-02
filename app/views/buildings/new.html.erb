@@ -1,0 +1,28 @@
+<h1>Create a new building:</h1>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |message| %>
+    <h5><%= message %></h5>
+    <% end %>
+<% end %>
+<%= form_for @building do |f| %>
+
+  <%= f.label :address %>:
+  <%= f.text_field :address %><br />
+  <br>
+
+  <%= f.label :neighborhood %>:
+  <%= f.text_field :neighborhood %><br />
+  <br>
+
+  <%= f.label :apt_count, "Number of Apartments" %>:
+  <%= f.number_field :apt_count %><br />
+  <br>
+
+  <%= f.label :description %>:
+  <%= f.text_area :description %><br />
+  <br>
+
+  <%= f.submit %>
+<% end %>
+
+<h5> <%= link_to "View all Buildings", buildings_path %>

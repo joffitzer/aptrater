@@ -1,0 +1,13 @@
+<h1>Name: <%= @tenant.name %> </h1>
+<h1>Username: <%= @tenant.username %> </h1>
+<h3> Reviews: </h3>
+<% @building_reviews.each do |building_review|%>
+<h5> <strong>Building: </strong><%= link_to building_review.building.address, building_path(building_review.building) %> </h5>
+<h5> <strong>Review: </strong><%= link_to building_review.title, building_review_path(building_review) %> </h5>
+<hr>
+<% end %>
+<p> <%= link_to "Update Profile", edit_tenant_path(@tenant) %> </p>
+
+<p> <%= link_to "View all Tenants", tenants_path %> </p>
+
+<%= button_to "Delete Account", { action: "delete", id: @tenant.id }, method: :delete %>
