@@ -1,11 +1,7 @@
 class BuildingsController < ApplicationController
 
     def index 
-        @buildings = Building.all
-        street_addresses = @buildings.map do |building|
-            building.address
-        end
-        @addresses = street_addresses.sort
+        @buildings = Building.sorted_with_average
     end 
 
     def new 
