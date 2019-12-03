@@ -2,6 +2,7 @@
 
 <h2> Building: <%= link_to @building.address, building_path(@building) %> </h2>
 <h2> Reviewed By: <%= link_to @tenant.username, tenant_path(@tenant) %> </h2>
+<h2> Overall Rating: <%= @overall_rating.round(2) %> </h2>
 <h2> Cleanliness: <%= @building_review.cleanliness %> </h2>
 <h2> Super: <%= @building_review.super %> </h2>
 <h2> Noise: <%= @building_review.noise %> </h2>

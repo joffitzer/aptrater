@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_143923) do
+ActiveRecord::Schema.define(version: 2019_12_03_181910) do
 
   create_table "building_reviews", force: :cascade do |t|
     t.string "title"
@@ -30,6 +30,26 @@ ActiveRecord::Schema.define(version: 2019_12_02_143923) do
     t.string "neighborhood"
     t.text "description"
     t.integer "apt_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "landlord_id"
+  end
+
+  create_table "landlord_reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "rating"
+    t.boolean "hotness"
+    t.integer "tenant_id"
+    t.integer "landlord_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "landlords", force: :cascade do |t|
+    t.string "name"
+    t.string "nickname"
+    t.string "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

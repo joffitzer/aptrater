@@ -1,9 +1,12 @@
 <h1>Name: <%= @tenant.name %> </h1>
 <h1>Username: <%= @tenant.username %> </h1>
+<h5>Average Building Rating: <%= @overall_avg.round(2) %></h5>
 <h3> Reviews: </h3>
 <% @building_reviews.each do |building_review|%>
 <h5> <strong>Building: </strong><%= link_to building_review.building.address, building_path(building_review.building) %> </h5>
 <h5> <strong>Review: </strong><%= link_to building_review.title, building_review_path(building_review) %> </h5>
+<% rating = (building_review.cleanliness + building_review.noise + building_review.super).to_f / 3 %>
+<h5> <strong>Overall Rating: </strong><%= rating.round(2) %> </h5>
 <hr>
 <% end %>
 <p> <%= link_to "Update Profile", edit_tenant_path(@tenant) %> </p>

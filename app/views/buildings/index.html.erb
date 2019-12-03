@@ -1,6 +1,14 @@
 <h1>All Buildings:</h1>
 <p><%= link_to "Don't see your building? Click here to add it to the directory", new_building_path %></p>
-<%@buildings.each do |building|%>
-<h5><%= link_to building.address, building_path(building) %>
+<%@addresses.each do |street_address|%>
+<% building = Building.find_by(address: street_address) %>
+<h5><%= link_to street_address, building_path(building) %></h5>
+<p>Neighborhood: <%= building.neighborhood %></p>
+<% if building.overall_average.finite? %>
+<p>Overall Rating: <%= building.overall_average.round(2) %></p>
+<% else %>
+<p>This building has not been rated yet.</p>
+<% end %>
+<hr>
 <% end %>
 

@@ -25,6 +25,14 @@ class TenantsController < ApplicationController
         @buildings = @building_reviews.map do |review|
             review.building
         end 
+
+        @avg_cleanliness = cleanliness_avg
+
+        @avg_super = super_avg
+
+        @avg_noise = noise_avg
+
+        @overall_avg = overall_avg
     end 
 
     def edit 
@@ -53,5 +61,31 @@ class TenantsController < ApplicationController
     def tenant_params
         params.require(:tenant).permit(:name, :username)
     end 
+
+    def cleanliness_avg
+        cleanliness_scores = @building_reviews.map do |review|
+            review.cleanliness
+        end 
+        @avg_cleanliness = cleanliness_scores.sum.to_f / cleanliness_scores.count
+    end 
+
+    def super_avg
+        super_scores = @building_reviews.map do |review|
+            review.super
+        end 
+        @avg_super = super_scores.sum.to_f / super_scores.count
+    end 
+
+    def noise_avg
+        noise_scores = @building_reviews.map do |review|
+            review.noise
+        end 
+        @avg_noise = noise_scores.sum.to_f / noise_scores.count
+    end 
+
+    def overall_avg
+        @overall_avg = (@avg_cleanliness + @avg_noise + @avg_super) / 3
+    end 
+
 
 end

@@ -19,6 +19,18 @@ puts 'Creating Tenants'
         )
 end 
 
+puts 'Destroying Landlords'
+Landlord.destroy_all
+
+puts 'Creating Landlords'
+10.times do 
+    Landlord.create(
+        name: Faker::FunnyName.name_with_initial, 
+        nickname: Faker::GreekPhilosophers.name,
+        avatar: Faker::Avatar.image,
+        )
+end 
+
 puts 'Destroying Buildings'
 Building.destroy_all
 
@@ -28,7 +40,8 @@ puts 'Creating Buildings'
         address: Faker::Address.street_address, 
         neighborhood: Faker::Address.community,
         description: Faker::Hipster.paragraph(sentence_count: 2, supplemental: true, random_sentences_to_add: 4),
-        apt_count: Faker::Number.between(from: 20, to: 100)
+        apt_count: Faker::Number.between(from: 20, to: 100),
+        landlord_id: Landlord.all.sample.id
         )
 end 
 
@@ -45,6 +58,21 @@ puts 'Creating Building Reviews'
         noise: Faker::Number.between(from: 1, to: 5),
         renew: Faker::Boolean.boolean,
         building_id: Building.all.sample.id,
+        tenant_id: Tenant.all.sample.id
+        )
+end 
+
+puts 'Destroying Landlord Reviews'
+LandlordReview.destroy_all
+
+puts 'Creating Landlord Reviews'
+50.times do 
+    LandlordReview.create(
+        title: Faker::Hipster.sentence(word_count: 3), 
+        content: Faker::Hipster.paragraph(sentence_count: 2, supplemental: true, random_sentences_to_add: 4),
+        rating: Faker::Number.between(from: 1, to: 5),
+        hotness: Faker::Boolean.boolean,
+        landlord_id: Landlord.all.sample.id,
         tenant_id: Tenant.all.sample.id
         )
 end 

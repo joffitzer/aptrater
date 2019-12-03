@@ -4,7 +4,6 @@ class BuildingReviewsController < ApplicationController
     end 
 
     def new 
-        #@building = Building.find(params[:id])
         @building_review = BuildingReview.new
     end 
 
@@ -17,6 +16,7 @@ class BuildingReviewsController < ApplicationController
         @building_review = BuildingReview.find(params[:id])
         @building = @building_review.building
         @tenant = @building_review.tenant
+        @overall_rating = (@building_review.cleanliness.to_f + @building_review.noise.to_f + @building_review.super.to_f) / 3
     end 
 
     def edit 
@@ -33,6 +33,18 @@ class BuildingReviewsController < ApplicationController
         building_review = BuildingReview.find(params[:id])
         building_review.destroy
         redirect_to building_reviews_path
+    end 
+
+    #custom routes
+
+    def new_specific_review
+        @building = Building.find(params[:building_id])
+        @building_review = @building.building_reviews.build
+    end 
+
+    def create_specific_review
+        specific_building_review = BuildingReview.create(building_review_params)
+        redirect_to building_review_path(specific_building_review)
     end 
 
 

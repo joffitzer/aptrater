@@ -1,0 +1,19 @@
+<h1>Name: <%= @landlord.name %> </h1>
+<h1>Nickname: <%= @landlord.nickname %> </h1>
+<img src="<%=@landlord.avatar%>" alt="<%=@landlord.nickname%>">
+<h3> Average Rating: <%= @average_rating.round(2) %></h3>
+<h3> Reviews: </h3>
+<% @landlord_reviews.each do |landlord_review|%>
+<h5><%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </h5>
+<h5>Reviewed by: <%= link_to landlord_review.tenant.username, tenant_path(landlord_review.tenant) %> </h5>
+<h5>Rating: <%= landlord_review.rating %> </h5>
+<hr>
+<% end %>
+
+<p> <%= link_to "Review this Landlord", "/landlord-reviews/new-specific-review?landlord_id=#{@landlord.id}" %> </p>
+
+<p> <%= link_to "Update Profile", edit_landlord_path(@landlord) %> </p>
+
+<p> <%= link_to "View all Landlords", landlords_path %> </p>
+
+<%= button_to "Retire this Landlord", { action: "delete", id: @landlord.id }, method: :delete %>

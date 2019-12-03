@@ -3,6 +3,13 @@
 <h3> Number of Apartments: <%= @building.apt_count %> </h3>
 <h4> <%= @building.description %> </h4>
 
+<h5>Overall Rating: <%= @overall_avg.round(2) %></h5>
+<h5>Average Cleanliness Rating: <%= @avg_cleanliness.round(2) %></h5>
+<h5>Average Super Rating: <%= @avg_super.round(2) %></h5>
+<h5>Average Noise Rating: <%= @avg_noise.round(2) %></h5>
+<h5>Average Renewal Rate: <%= @avg_renewal.round(4) * 100 %>%</h5>
+
+
 <h3>Reviews:</h3>
 
 <% @reviews.each do |breview| %>
@@ -12,7 +19,7 @@ Review: <%= breview.content %><br>
 <hr>
 <% end %>
 
-<p> <%= link_to "Review this Building", new_building_review_path %> </p>
+<p> <%= link_to "Review this Building", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </p>
 
 <p> <%= link_to "Update Building Information", edit_building_path(@building) %> </p>
 

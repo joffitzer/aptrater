@@ -23,9 +23,36 @@ Rails.application.routes.draw do
   get '/building-reviews', to: 'building_reviews#index', as: 'building_reviews'
   get '/building-reviews/new', to: 'building_reviews#new', as: 'new_building_review'
   post '/building-reviews', to: 'building_reviews#create'
+  get '/building-reviews/new-specific-review', to: 'building_reviews#new_specific_review', as: 'new_specific_building_review'
   get '/building-reviews/:id', to: 'building_reviews#show', as: 'building_review'
   get '/building-reviews/:id/edit', to: 'building_reviews#edit', as: 'edit_building_review'
   patch '/building-reviews/:id', to: 'building_reviews#update'
   delete '/building-reviews/:id', to: 'building_reviews#delete'
+
+  #custom building review routes
+  post '/specific-building-reviews', to: 'building_reviews#create_specific_review'
+  post '/specific-landlord-reviews', to: 'landlord_reviews#create_specific_review'
+
+  #custom routes
+  get '/welcome', to: 'reviews#welcome', as: 'about'
+
+  #landlord routes
+  get '/landlords', to: 'landlords#index', as: 'landlords'
+  get '/landlords/new', to: 'landlords#new', as: 'new_landlord'
+  post '/landlords', to: 'landlords#create'
+  get '/landlords/:id', to: 'landlords#show', as: 'landlord'
+  get '/landlords/:id/edit', to: 'landlords#edit', as: 'edit_landlord'
+  patch '/landlords/:id', to: 'landlords#update'
+  delete '/landlords/:id', to: 'landlords#delete'
+
+  #landlord review routes
+  get '/landlord-reviews', to: 'landlord_reviews#index', as: 'landlord_reviews'
+  get '/landlord-reviews/new', to: 'landlord_reviews#new', as: 'new_landlord_review'
+  post '/landlord-reviews', to: 'landlord_reviews#create'
+  get '/landlord-reviews/new-specific-review', to: 'landlord_reviews#new_specific_review', as: 'new_specific_landlord_review'
+  get '/landlord-reviews/:id', to: 'landlord_reviews#show', as: 'landlord_review'
+  get '/landlord-reviews/:id/edit', to: 'landlord_reviews#edit', as: 'edit_landlord_review'
+  patch '/landlord-reviews/:id', to: 'landlord_reviews#update'
+  delete '/landlord-reviews/:id', to: 'landlord_reviews#delete'
 
 end

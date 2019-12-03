@@ -1,0 +1,5 @@
+<h1>All Landlords:</h1>
+<p><%= link_to "Create a Landlord Account", new_landlord_path %></p>
+<%@landlords.each do |landlord|%>
+<h5><%= link_to landlord.name, landlord_path(landlord) %>
+<% end %>

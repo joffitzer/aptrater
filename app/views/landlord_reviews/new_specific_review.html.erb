@@ -1,0 +1,26 @@
+<h1>Create a new landlord review:</h1>
+<%= form_for @landlord_review do |f| %>
+
+  <p>Landlord: <%= @landlord.name %></p>
+  <%= f.hidden_field :landlord_id %>
+
+  <p>Select your username: <%= collection_select(:landlord_review, :tenant_id, Tenant.all, :id, :username, prompt: true) %></p>
+
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br />
+  <br>
+
+  <%= f.label :content, "Write your review here:" %>
+  <%= f.text_area :content %><br />
+  <br>
+
+  <%= f.label :rating, "Rate your landlord here:" %>
+  <%= f.select :rating, (1..5), prompt: true %> <br>
+<br>
+
+   <%= f.label :hotness, "Are they hot? Check if yes:" %>
+  <%= f.check_box :hotness %><br />
+  <br>
+
+  <%= f.submit %>
+<% end %>

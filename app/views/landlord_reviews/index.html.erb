@@ -1,0 +1,10 @@
+<h1>All Landlord Reviews:</h1>
+<p><%= link_to "Review a Landlord", new_landlord_review_path %></p>
+<%@landlord_reviews.each do |review|%>
+<p>Review: <%= link_to review.title, landlord_review_path(review)%></p>
+<p>Overall Rating: <%= review.rating %></p>
+<p>Landlord: <%= link_to review.landlord.name, landlord_path(review.landlord)%></p>
+<p>Reviewed By: <%= link_to review.tenant.username, tenant_path(review.tenant)%></p>
+<hr>
+
+<% end %>

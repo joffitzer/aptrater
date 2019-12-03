@@ -1,0 +1,33 @@
+<h1>Create a new building review:</h1>
+<%= form_for @building_review do |f| %>
+
+  <p>Building: <%= @building.address %></p>
+  <%= f.hidden_field :building_id %>
+
+  <p>Select your username: <%= collection_select(:building_review, :tenant_id, Tenant.all, :id, :username, prompt: true) %></p>
+
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br />
+  <br>
+
+  <%= f.label :content, "Write your review here:" %>
+  <%= f.text_area :content %><br />
+  <br>
+
+  <%= f.label :cleanliness, "Cleanliness Rating:" %>
+  <%= f.select :cleanliness, (1..5), prompt: true %> <br>
+<br>
+   <%= f.label :super, "Super Rating:" %>
+  <%= f.select :super, (1..5), prompt: true %> <br>
+  <br>
+
+   <%= f.label :noise, "Noise Rating" %>:
+  <%= f.select :noise, (1..5), prompt: true %> <br>
+  <br>
+
+   <%= f.label :renew, "Would you renew? Check if yes:" %>
+  <%= f.check_box :renew %><br />
+  <br>
+
+  <%= f.submit %>
+<% end %>

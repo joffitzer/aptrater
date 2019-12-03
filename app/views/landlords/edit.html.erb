@@ -1,0 +1,24 @@
+<h1>Update your Landlord's Profile: </h1>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |message| %>
+    <h5><%= message %></h5>
+    <% end %>
+<% end %>
+<%= form_for @landlord do |f| %>
+
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
+  <br>
+
+  <%= f.label :nickname %>:
+  <%= f.text_field :nickname %><br />
+  <br>
+
+    <%= f.label :avatar, "paste image URL here"  %>:
+  <%= f.text_field :avatar %><br />
+  <br>
+
+  <%= f.submit %>
+<% end %>
+
+<h5> <%= link_to "View all Landlords", landlords_path %>
