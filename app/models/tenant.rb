@@ -3,6 +3,6 @@ class Tenant < ApplicationRecord
     has_many :buildings, through: :building_reviews
     has_many :landlord_reviews 
     has_many :landlords, through: :landlord_reviews 
-    validates :name, uniqueness: true
-    validates :username, uniqueness: true
+    validates :username, uniqueness: { case_sensitive: false }
+    has_secure_password
 end

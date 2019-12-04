@@ -1,6 +1,7 @@
 <h1>Name: <%= @landlord.name %> </h1>
 <h1>Nickname: <%= @landlord.nickname %> </h1>
 <img src="<%=@landlord.avatar%>" alt="<%=@landlord.nickname%>">
+<% if @average_rating > 0 %>
 <h3> Average Rating: <%= @average_rating.round(2) %></h3>
 <h3> Reviews: </h3>
 <% @landlord_reviews.each do |landlord_review|%>
@@ -8,6 +9,9 @@
 <h5>Reviewed by: <%= link_to landlord_review.tenant.username, tenant_path(landlord_review.tenant) %> </h5>
 <h5>Rating: <%= landlord_review.rating %> </h5>
 <hr>
+<% end %>
+<% else %>
+<h3>This landlord has not been <%= link_to "reviewed", "/landlord-reviews/new-specific-review?landlord_id=#{@landlord.id}" %> </h3>
 <% end %>
 
 <p> <%= link_to "Review this Landlord", "/landlord-reviews/new-specific-review?landlord_id=#{@landlord.id}" %> </p>

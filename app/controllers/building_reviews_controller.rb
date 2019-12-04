@@ -4,12 +4,18 @@ class BuildingReviewsController < ApplicationController
     end 
 
     def new 
-        @building_review = BuildingReview.new
+        @tenant = current_tenant
+        @building_review = @tenant.building_reviews.build
     end 
 
     def create 
-        building_review = BuildingReview.create(building_review_params)
-        redirect_to building_review_path(building_review)
+        building_review = BuildingReview.new(building_review_params)
+        if building_review.save 
+            redirect_to building_review_path(building_review)
+        else 
+            flash[:errors] = building_review.errors.full_messages
+            redirect_to new_building_review_path
+        end 
     end 
 
     def show 
@@ -39,13 +45,21 @@ class BuildingReviewsController < ApplicationController
 
     def new_specific_review
         @building = Building.find(params[:building_id])
-        @building_review = @building.building_reviews.build
+        @tenant = current_tenant
+        @building_review = @tenant.building_reviews.build
+        @building_review.building = @building
     end 
 
     def create_specific_review
-        specific_building_review = BuildingReview.create(building_review_params)
-        redirect_to building_review_path(specific_building_review)
-    end 
+        specific_building_review = BuildingReview.new(building_review_params)
+
+            if specific_building_review.save 
+                redirect_to building_review_path(specific_building_review)
+            else 
+                flash[:errors] = building_review.errors.full_messages
+                redirect_to new_specific_building_review_path
+            end 
+        end 
 
 
     private 

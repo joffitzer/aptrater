@@ -1,0 +1,8 @@
+<% if flash[:must_log_in] %>
+    <%= flash[:must_log_in] %>
+<% end %> 
+
+<h1>Welcome to Rate My Rental!</h1>
+
+<h3><%= link_to "Log In", login_path %></h3>
+<h3><%= link_to "Create an Account", signup_path %></h3>

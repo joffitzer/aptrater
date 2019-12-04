@@ -14,7 +14,15 @@
   <%= f.text_field :username %><br />
   <br>
 
-  <%= f.submit %>
+  <%= f.label :password %>:
+  <%= f.password_field :password %><br />
+  <br>
+
+  <%= f.label :password_confirmation %>:
+  <%= f.password_field :password_confirmation %><br />
+  <br>
+
+  <%= f.submit "Create Account" %>
 <% end %>
 
 <h5> <%= link_to "View all Buildings", buildings_path %>

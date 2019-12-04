@@ -10,6 +10,21 @@
   </head>
 
   <body>
+  <% if logged_in? %>
+    Tenant id: <%= current_tenant.id %>
+    <% end %>
+  <br>
+    <nav>
+      <% if logged_in? %>
+        <%= link_to "Buildings", buildings_path %>
+        <%= link_to "Building Reviews", building_reviews_path %>
+        <%= link_to "Landlords", landlords_path %>
+        <%= link_to "Landlord Reviews", landlord_reviews_path %>
+        <%= link_to "Tenants", tenants_path %>
+        <%= link_to "Log Out", logout_path, method: :delete %>
+      <% end %>
+    </nav>
+
     <%= yield %>
   </body>
 </html>

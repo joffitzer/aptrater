@@ -1,14 +1,17 @@
 <h1><%= @building.address %> </h1>
 <h2> Neighborhood: <%= @building.neighborhood %> </h2>
 <h3> Number of Apartments: <%= @building.apt_count %> </h3>
+<h3> Landlord: <%= link_to @building.landlord.name, landlord_path(@building.landlord) %> </h3>
 <h4> <%= @building.description %> </h4>
-
+<% if @overall_avg > 0 %>
 <h5>Overall Rating: <%= @overall_avg.round(2) %></h5>
 <h5>Average Cleanliness Rating: <%= @avg_cleanliness.round(2) %></h5>
 <h5>Average Super Rating: <%= @avg_super.round(2) %></h5>
 <h5>Average Noise Rating: <%= @avg_noise.round(2) %></h5>
 <h5>Average Renewal Rate: <%= @avg_renewal.round(4) * 100 %>%</h5>
-
+<% else %>
+<h5>This building has not been reviewed. <%= link_to "Be the first!", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </h5>
+<% end %>
 
 <h3>Reviews:</h3>
 

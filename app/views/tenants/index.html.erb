@@ -1,5 +1,4 @@
 <h1>All Tenants:</h1>
-<p><%= link_to "Create a Tenant Account", new_tenant_path %></p>
 <%@tenants.each do |tenant|%>
 <h5><%= link_to tenant.username, tenant_path(tenant) %>
 <% end %>

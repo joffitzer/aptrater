@@ -1,4 +1,5 @@
 class TenantsController < ApplicationController
+
     def index 
         @tenants = Tenant.all
     end 
@@ -10,34 +11,80 @@ class TenantsController < ApplicationController
     def create 
         tenant = Tenant.new(tenant_params)
         if tenant.save 
-            redirect_to tenant_path(tenant)
+            flash[:new_account_message] = "Thanks for creating a new profile! Please log in below:"
+            redirect_to login_path
         else 
             flash[:errors] = tenant.errors.full_messages
-            redirect_to new_tenant_path
+            redirect_to signup_path
         end
     end 
 
     def show 
-        @tenant = Tenant.find(params[:id])
-        @building_reviews = BuildingReview.all.select do |building_review|
-            building_review.tenant == @tenant 
+        if logged_in? 
+            if authorized?
+
+                @tenant = Tenant.find(params[:id])
+
+                @building_reviews = BuildingReview.all.select do |building_review|
+                    building_review.tenant == @tenant 
+                end 
+
+                @landlord_reviews = LandlordReview.all.select do |landlord_review|
+                    landlord_review.tenant == @tenant 
+                end 
+
+                @buildings = @building_reviews.map do |review|
+                    review.building
+                end 
+
+                @avg_cleanliness = cleanliness_avg
+
+                @avg_super = super_avg
+
+                @avg_noise = noise_avg
+
+                @overall_avg = overall_avg
+
+                render :show
+            else 
+                @tenant = Tenant.find(params[:id])
+
+                @building_reviews = BuildingReview.all.select do |building_review|
+                    building_review.tenant == @tenant 
+                end 
+
+                @landlord_reviews = LandlordReview.all.select do |landlord_review|
+                    landlord_review.tenant == @tenant 
+                end 
+
+                @buildings = @building_reviews.map do |review|
+                    review.building
+                end 
+
+                @avg_cleanliness = cleanliness_avg
+
+                @avg_super = super_avg
+
+                @avg_noise = noise_avg
+
+                @overall_avg = overall_avg
+
+                render :outside_show
+            end 
+        else 
+            flash[:must_log_in] = "Please create an account or log in:"
+            redirect_to :root 
         end 
-        @buildings = @building_reviews.map do |review|
-            review.building
-        end 
-
-        @avg_cleanliness = cleanliness_avg
-
-        @avg_super = super_avg
-
-        @avg_noise = noise_avg
-
-        @overall_avg = overall_avg
     end 
 
     def edit 
-        @tenant = Tenant.find(params[:id])
-    end 
+        if authorized?
+            @tenant = current_tenant
+        else 
+            flash[:message] = "You do not have access to edit another Tenant's profile."
+            redirect_to tenant_path(Tenant.find(params))
+        end 
+    end  
 
     def update 
         tenant = Tenant.find(params[:id])
@@ -59,7 +106,7 @@ class TenantsController < ApplicationController
     private 
 
     def tenant_params
-        params.require(:tenant).permit(:name, :username)
+        params.require(:tenant).permit(:name, :username, :password, :password_confirmation)
     end 
 
     def cleanliness_avg
@@ -86,6 +133,5 @@ class TenantsController < ApplicationController
     def overall_avg
         @overall_avg = (@avg_cleanliness + @avg_noise + @avg_super) / 3
     end 
-
 
 end

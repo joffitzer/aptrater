@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  root to: 'welcome#index'
+
   #building routes
   get '/buildings', to: 'buildings#index', as: 'buildings'
   get '/buildings/new', to: 'buildings#new', as: 'new_building'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 
   #tenant routes
   get '/tenants', to: 'tenants#index', as: 'tenants'
-  get '/tenants/new', to: 'tenants#new', as: 'new_tenant'
+  get '/signup', to: 'tenants#new', as: 'signup'
   post '/tenants', to: 'tenants#create'
   get '/tenants/:id', to: 'tenants#show', as: 'tenant'
   get '/tenants/:id/edit', to: 'tenants#edit', as: 'edit_tenant'
@@ -33,8 +35,8 @@ Rails.application.routes.draw do
   post '/specific-building-reviews', to: 'building_reviews#create_specific_review'
   post '/specific-landlord-reviews', to: 'landlord_reviews#create_specific_review'
 
-  #custom routes
-  get '/welcome', to: 'reviews#welcome', as: 'about'
+  #welcome route
+  get '/home', to: 'main#home', as: 'home'
 
   #landlord routes
   get '/landlords', to: 'landlords#index', as: 'landlords'
@@ -54,5 +56,10 @@ Rails.application.routes.draw do
   get '/landlord-reviews/:id/edit', to: 'landlord_reviews#edit', as: 'edit_landlord_review'
   patch '/landlord-reviews/:id', to: 'landlord_reviews#update'
   delete '/landlord-reviews/:id', to: 'landlord_reviews#delete'
+
+  #login routes
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
 
 end
