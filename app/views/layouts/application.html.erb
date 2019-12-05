@@ -1,29 +1,99 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>Aptrater</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Bootstrap core CSS -->
+  <link href="http://blackrockdigital.github.io/startbootstrap-grayscale/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="http://blackrockdigital.github.io/startbootstrap-grayscale/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="http://blackrockdigital.github.io/startbootstrap-grayscale/css/grayscale.min.css" rel="stylesheet">
+
+</head>
+
 
   <body>
-  
-  <br>
-    <nav>
-      <% if logged_in? %>
-        <%= link_to "Buildings", buildings_path %>
-        <%= link_to "Building Reviews", building_reviews_path %>
-        <%= link_to "Landlords", landlords_path %>
-        <%= link_to "Landlord Reviews", landlord_reviews_path %>
-        <%= link_to "Tenants", tenants_path %>
-        <%= link_to "My Profile", tenant_path(current_tenant) %>
-        <%= link_to "Log Out", logout_path, method: :delete %>
-      <% end %>
-    </nav>
 
-    <%= yield %>
+
+    <!-- Navigation -->
+
+<% if logged_in? %>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/buildings">Buildings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/building-reviews">Building Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/landlords">Landlords</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/landlord-reviews">Landlord Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/tenants">Tenants</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/tenants/<%=current_tenant.id%>">My Profile</a>
+          </li>
+
+          <li class="d-flex justify-content-end">
+            <a class="navbar-brand" href="#"><%= link_to "Log Out", logout_path, method: :delete %></a>
+          </li>
+ </div>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <% end %>
+ 
+
+      <!--<% if logged_in? %>
+  <%= link_to "Buildings", buildings_path %>
+  <%= link_to "Building Reviews", building_reviews_path %>
+  <%= link_to "Landlords", landlords_path %>
+  <%= link_to "Landlord Reviews", landlord_reviews_path %>
+  <%= link_to "Tenants", tenants_path %>
+  <%= link_to "My Profile", tenant_path(current_tenant) %>
+  <% end %>
+    <br>
+    <br>-->
+
+<%= yield %>
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="http://blackrockdigital.github.io/startbootstrap-grayscale/vendor/jquery/jquery.min.js"></script>
+  <script src="http://blackrockdigital.github.io/startbootstrap-grayscale/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="http://blackrockdigital.github.io/startbootstrap-grayscale/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="http://blackrockdigital.github.io/startbootstrap-grayscale/js/grayscale.min.js"></script>
+
   </body>
+
 </html>

@@ -2,7 +2,27 @@
     <%= flash[:must_log_in] %>
 <% end %> 
 
-<h1>Welcome to Rate My Rental!</h1>
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">Rate my Rental</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">Your #1 Destination for Building and Landlord Reviews</h2>
+        <a href="/login" class="btn btn-primary js-scroll-trigger">Log In</a>
+        <a href="/signup" class="btn btn-primary js-scroll-trigger">Sign Up</a>
+      </div>
+    </div>
+  </header>
 
-<h3><%= link_to "Log In", login_path %></h3>
-<h3><%= link_to "Create an Account", signup_path %></h3>
+  <!-- About Section -->
+  <section id="about" class="about-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">Jen & Jonah's Mod2 Project</h2>
+          <p class="text-white-50">Copyright 2019 Jen & Jonah, Inc.</p>
+        </div>
+      </div>
+      <img src="img/ipad.png" class="img-fluid" alt="">
+    </div>
+  </section>
