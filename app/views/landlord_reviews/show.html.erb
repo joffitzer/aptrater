@@ -1,7 +1,7 @@
 <h1><%= @landlord_review.title %> </h1>
 
-<h2> Landlord: <%= link_to @landlord.name, landlord_path(@landlord) %> </h2>
-<h2> Reviewed By: <%= link_to @tenant.username, tenant_path(@tenant) %> </h2>
+<h2> Landlord: <%= landlord_reviewed(@landlord_review) %> </h2>
+<h2> Reviewed By: <%= reviewed_by_content(@landlord_review) %> </h2>
 <h2> Overall Rating: <%= @landlord_review.rating %> </h2>
 
 <% if @landlord_review.hotness == false %>
@@ -12,8 +12,7 @@
 
 <p> <%= @landlord_review.content %> </p>
 
-<p> <%= link_to "Update Review", edit_landlord_review_path(@landlord_review) %> </p>
-
-<p> <%= link_to "View all Landlord Reviews", landlord_reviews_path %> </p>
-
-<%= button_to "Delete Review", { action: "delete", id: @landlord_review.id }, method: :delete %>
+<% if @landlord_review.tenant == current_tenant %>
+    <p> <%= link_to "Update Review", edit_landlord_review_path(@landlord_review) %> </p>
+    <%= button_to "Delete Review", { action: "delete", id: @landlord_review.id }, method: :delete %>
+<%end%>

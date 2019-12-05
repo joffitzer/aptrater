@@ -1,9 +1,16 @@
+<% if flash[:errors] %>
+    <% flash[:errors].each do |message| %>
+        <%= message %>
+    <% end %> 
+<% end %> 
+
 <h1>Create a new landlord review:</h1>
 <%= form_for @landlord_review do |f| %>
 
   <p>Landlord: <%= collection_select(:landlord_review, :landlord_id, Landlord.all, :id, :name, prompt: true) %></p>
 
-  <p>Select your username: <%= collection_select(:landlord_review, :tenant_id, Tenant.all, :id, :username, prompt: true) %></p>
+  <p>Reviewer: <%= @tenant.username %></p>
+  <%= f.hidden_field :tenant_id %>
 
   <%= f.label :title %>:
   <%= f.text_field :title %><br />

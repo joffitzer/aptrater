@@ -4,12 +4,18 @@ class LandlordReviewsController < ApplicationController
     end 
 
     def new 
-        @landlord_review = LandlordReview.new
+        @tenant = current_tenant
+        @landlord_review = @tenant.landlord_reviews.build
     end 
 
     def create 
-        @landlord_review = LandlordReview.create(landlord_review_params)
-        redirect_to landlord_review_path(@landlord_review)
+        landlord_review = LandlordReview.new(landlord_review_params)
+        if landlord_review.save 
+            redirect_to landlord_review_path(landlord_review)
+        else 
+            flash[:errors] = landlord_review.errors.full_messages
+            redirect_to new_landlord_review_path
+        end 
     end 
 
     def show 
@@ -39,12 +45,19 @@ class LandlordReviewsController < ApplicationController
 
     def new_specific_review
         @landlord = Landlord.find(params[:landlord_id])
-        @landlord_review = @landlord.landlord_reviews.build
+        @tenant = current_tenant
+        @landlord_review = @tenant.landlord_reviews.build
+        @landlord_review.landlord = @landlord
     end 
 
     def create_specific_review
-        specific_landlord_review = LandlordReview.create(landlord_review_params)
-        redirect_to landlord_review_path(specific_landlord_review)
+        specific_landlord_review = LandlordReview.new(landlord_review_params)
+        if specific_landlord_review.save 
+            redirect_to landlord_review_path(specific_landlord_review)
+        else 
+            flash[:errors] = landlord_review.errors.full_messages
+            redirect_to new_specific_landlord_review_path
+        end 
     end 
 
 

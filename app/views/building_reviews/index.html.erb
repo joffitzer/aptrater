@@ -1,11 +1,10 @@
 <h1>All Building Reviews:</h1>
 <p><%= link_to "Review a Building", new_building_review_path %></p>
 <%@building_reviews.each do |review|%>
-<p>Review: <%= link_to review.title, building_review_path(review)%></p>
-<% rating = (review.cleanliness.to_f + review.noise.to_f + review.super.to_f) / 3 %>
-<p>Overall Rating: <%= rating.round(2) %></p>
-<p>Building: <%= link_to review.building.address, building_path(review.building)%></p>
-<p>Reviewed By: <%= link_to review.tenant.username, tenant_path(review.tenant)%></p>
-<hr>
-
+        <p>Review: <%= link_to review.title, building_review_path(review)%></p>
+        <% rating = (review.cleanliness.to_f + review.noise.to_f + review.super.to_f) / 3 %>
+        <p>Overall Rating: <%= rating.round(2) %></p>
+        <p>Building: <%= building_reviewed(review) %></p>
+        <p>Reviewed By:  <%= reviewed_by_content(review) %></p>
+        <hr>
 <% end %>

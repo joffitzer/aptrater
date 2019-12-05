@@ -99,7 +99,8 @@ class TenantsController < ApplicationController
     def delete
         tenant = Tenant.find(params[:id])
         tenant.destroy
-        redirect_to tenants_path
+        session.delete(:tenant_id)
+        redirect_to :root
     end 
 
 

@@ -21,6 +21,7 @@
         <%= link_to "Landlords", landlords_path %>
         <%= link_to "Landlord Reviews", landlord_reviews_path %>
         <%= link_to "Tenants", tenants_path %>
+        <%= link_to "My Profile", tenant_path(current_tenant) %>
         <%= link_to "Log Out", logout_path, method: :delete %>
       <% end %>
     </nav>

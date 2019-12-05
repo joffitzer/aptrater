@@ -3,8 +3,8 @@
 <%@landlord_reviews.each do |review|%>
 <p>Review: <%= link_to review.title, landlord_review_path(review)%></p>
 <p>Overall Rating: <%= review.rating %></p>
-<p>Landlord: <%= link_to review.landlord.name, landlord_path(review.landlord)%></p>
-<p>Reviewed By: <%= link_to review.tenant.username, tenant_path(review.tenant)%></p>
+<p>Landlord: <%= landlord_reviewed(review)%></p>
+<p>Reviewed By: <%= reviewed_by_content(review) %></p>
 <hr>
 
 <% end %>

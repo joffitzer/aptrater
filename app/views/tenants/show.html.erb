@@ -2,27 +2,36 @@
 <br>
 
 <h2>Name: <%= @tenant.name %> </h2>
-    <% if @overall_avg > 0 %>
-        <h5>Average Building Rating: <%= @overall_avg.round(2) %></h5>
-    <%else%>
-        <h5>Average Building Rating: This tenant has not reviewed any buildings yet.</h5>
-    <%end%>
-<h3> Building Reviews: </h3>
+<% if @tenant.building_reviews.count > 0 %>
+    <h5>Average Building Rating: <%= @overall_avg.round(2) %></h5>
+<h3>Building Reviews: </h3>
 <% @building_reviews.each do |building_review|%>
-<h5> <strong>Building: </strong><%= link_to building_review.building.address, building_path(building_review.building) %> </h5>
-<h5> <strong>Review: </strong><%= link_to building_review.title, building_review_path(building_review) %> </h5>
+<h5>Building: <%= building_reviewed(building_review) %> </h5>
+<h5> Review: <%= link_to building_review.title, building_review_path(building_review) %> </h5>
 <% rating = (building_review.cleanliness + building_review.noise + building_review.super).to_f / 3 %>
-<h5> <strong>Overall Rating: </strong><%= rating.round(2) %> </h5>
+<h5> Overall Rating: <%= rating.round(2) %> </h5>
 <hr>
 <% end %>
+<%else%>
+<h3>Building Reviews: </h3>
+<h5> You have not <%= link_to "reviewed", new_building_review_path%> any buildings.</h5>
 <hr>
+<%end%>
+    <% if @tenant.landlord_reviews %>
 <h3> Landlord Reviews: </h3>
 <% @landlord_reviews.each do |landlord_review|%>
-<h5> Landlord: <<%= link_to landlord_review.landlord.name, landlord_path(landlord_review.landlord) %> </h5>
-<h5> Review: <<%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </h5>
-<h5> Overall Rating: <<%= landlord_review.rating %> </h5>
+<h5> Landlord: <%= landlord_reviewed(landlord_review) %> </h5>
+<h5> Review: <%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </h5>
+<h5> Overall Rating: <%= landlord_review.rating %> </h5>
 <% end %>
+<%else%>
+<h5> You have not yet reviewed a landlord.</h5>
+<%end%>
+<% if !@tenant.landlord_reviews && !@tenant.building_reviews%>
+<h5>You have no reviews. Click below to write a review.</h5>
+<%end%>
 
+<p> <%= link_to "Review a Landlord", new_landlord_review_path %> </p>
+<p> <%= link_to "Review a Building", new_building_review_path %> </p>
 <p> <%= link_to "Update Profile", edit_tenant_path(@tenant) %> </p>
-
 <%= button_to "Delete Account", { action: "delete", id: @tenant.id }, method: :delete %>
