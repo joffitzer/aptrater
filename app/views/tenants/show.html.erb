@@ -2,6 +2,7 @@
 <br>
 
 <h2>Name: <%= @tenant.name %> </h2>
+<img src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
 <% if @tenant.building_reviews.count > 0 %>
     <h5>Average Building Rating: <%= @overall_avg.round(2) %></h5>
 <h3>Building Reviews: </h3>
@@ -17,7 +18,7 @@
 <h5> You have not <%= link_to "reviewed", new_building_review_path%> any buildings.</h5>
 <hr>
 <%end%>
-    <% if @tenant.landlord_reviews %>
+    <% if @tenant.landlord_reviews.count > 0 %>
 <h3> Landlord Reviews: </h3>
 <% @landlord_reviews.each do |landlord_review|%>
 <h5> Landlord: <%= landlord_reviewed(landlord_review) %> </h5>
@@ -25,7 +26,8 @@
 <h5> Overall Rating: <%= landlord_review.rating %> </h5>
 <% end %>
 <%else%>
-<h5> You have not yet reviewed a landlord.</h5>
+<h5> You have not <%= link_to "reviewed", new_landlord_review_path%> any landlords.</h5>
+<br>
 <%end%>
 <% if !@tenant.landlord_reviews && !@tenant.building_reviews%>
 <h5>You have no reviews. Click below to write a review.</h5>

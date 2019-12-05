@@ -18,11 +18,11 @@
   <%= f.password_field :password %><br />
   <br>
 
+  <%= f.hidden_field :avatar %>
+
   <%= f.label :password_confirmation %>:
   <%= f.password_field :password_confirmation %><br />
   <br>
 
   <%= f.submit "Create Account" %>
 <% end %>
-
-<h5> <%= link_to "View all Buildings", buildings_path %>

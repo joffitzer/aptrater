@@ -6,6 +6,7 @@ class BuildingsController < ApplicationController
 
     def new 
         @building = Building.new
+        @building.image = "https://www1.nyc.gov/assets/sustainability/images/content/pages/buildings.jpg"
     end 
 
     def create 
@@ -54,7 +55,7 @@ class BuildingsController < ApplicationController
     private 
 
     def building_params
-        params.require(:building).permit(:address, :neighborhood, :description, :apt_count, :landlord_id)
+        params.require(:building).permit(:address, :neighborhood, :description, :apt_count, :landlord_id, :image)
     end 
 
     def cleanliness_avg

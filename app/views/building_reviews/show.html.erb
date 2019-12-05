@@ -1,5 +1,7 @@
 <h1><%= @building_review.title %> </h1>
 
+<img src="<%=@building_review.building.image%>" alt="<%=@building_review.building.address%>">
+
 <h2> Building: <%= building_reviewed(@building_review) %> </h2>
 <h2> Reviewed By: <%=reviewed_by_content(@building_review) %> </h2>
 <h2> Overall Rating: <%= @overall_rating.round(2) %> </h2>

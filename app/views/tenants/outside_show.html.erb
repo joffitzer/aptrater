@@ -1,6 +1,7 @@
 <h1><%=@tenant.username%>'s Profile</h1>
 
 <h2>Name: <%= @tenant.name %> </h2>
+<img src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
     <% if @overall_avg > 0 %>
         <h5>Average Building Rating: <%= @overall_avg.round(2) %></h5>
 <h3> Building Reviews: </h3>

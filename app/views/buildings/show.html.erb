@@ -1,4 +1,5 @@
 <h1><%= @building.address %> </h1>
+<img src="<%=@building.image%>" alt="<%=@building.address%>">
 <h2> Neighborhood: <%= @building.neighborhood %> </h2>
 <h3> Number of Apartments: <%= @building.apt_count %> </h3>
 <h3> Landlord: <%= link_to @building.landlord.name, landlord_path(@building.landlord) %> </h3>

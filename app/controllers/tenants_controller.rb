@@ -6,6 +6,7 @@ class TenantsController < ApplicationController
 
     def new 
         @tenant = Tenant.new
+        @tenant.avatar = "https://endthrive.com/wp-content/uploads/2019/06/default._CR0010241024_SX460_.jpg"
     end 
 
     def create 
@@ -107,7 +108,7 @@ class TenantsController < ApplicationController
     private 
 
     def tenant_params
-        params.require(:tenant).permit(:name, :username, :password, :password_confirmation)
+        params.require(:tenant).permit(:name, :username, :password, :password_confirmation, :avatar)
     end 
 
     def cleanliness_avg
