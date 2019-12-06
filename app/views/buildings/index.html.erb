@@ -1,5 +1,5 @@
 <h1 style=font-size:50px>Buildings:</h1>
-<p><%= link_to "Don't see your building? Click here to add it to the directory", new_building_path %></p>
+<p style=font-size:20px><%= link_to "Don't see your building? Click here to add it to the directory", new_building_path %></p>
 <%@buildings.each do |building|%>
 <p><%= link_to building.address, building_path(building) %></p>
 <img class="building_thumbnail"src="<%=building.image%>" alt="<%=building.address%>">

@@ -2,6 +2,7 @@
 <p><%= link_to "Review a Building", new_building_review_path %></p>
 <%@building_reviews.each do |review|%>
         <p>Review: <%= link_to review.title, building_review_path(review)%></p>
+        <img class="building_thumbnail"src="<%=review.building.image%>" alt="<%=review.building.address%>">
         <% rating = (review.cleanliness.to_f + review.noise.to_f + review.super.to_f) / 3 %>
         <p>Overall Rating: <%= rating.round(2) %></p>
         <p>Building: <%= building_reviewed(review) %></p>
