@@ -1,7 +1,7 @@
 <h1 style=font-size:50px><%= @building.address %> </h1>
-
-<img class="profilepic"src="<%=@building.image%>" alt="<%=@building.address%>">
-<div class="lowerlog">
+    <div class="flex_pic">
+    <div class="profile_text">
+    <div class="lowerlog">
 <p> <%= link_to "Review this Building", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </p>
 <p> Neighborhood: <%= @building.neighborhood %> </p>
 <p> Number of Apartments: <%= @building.apt_count %> </p>
@@ -34,3 +34,9 @@ Review: <%= breview.content %><br>
 <br>
 <br>
 </div>
+</div>
+
+    <div class="right">
+<img class="profilepic"src="<%=@building.image%>" alt="<%=@building.address%>">
+    </div>
+    </div>

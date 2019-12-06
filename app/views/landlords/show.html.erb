@@ -1,6 +1,7 @@
 <h1>Name: <%= @landlord.name %> </h1>
 <h1>Nickname: <%= @landlord.nickname %> </h1>
-<img src="<%=@landlord.avatar%>" alt="<%=@landlord.nickname%>">
+    <div class="flex_pic">
+    <div class="profile_text">
 <div class="lowerlog">
 <p> <%= link_to "Review this Landlord", "/landlord-reviews/new-specific-review?landlord_id=#{@landlord.id}" %> </p>
 <% if @average_rating > 0 %>
@@ -23,4 +24,9 @@
 <%= button_to "Retire this Landlord", { action: "delete", id: @landlord.id }, method: :delete %>
 <br>
 <br>
-</div>
+    </div>
+    </div>
+    <div class="right">
+<img src="<%=@landlord.avatar%>" alt="<%=@landlord.nickname%>">
+    </div>
+    </div>

@@ -1,6 +1,6 @@
-<h1 style=font-size:50px><%= @building_review.title %> </h1>
-
-<img class="profilepic" src="<%=@building_review.building.image%>" alt="<%=@building_review.building.address%>">
+<h1 class="profile_text" style=font-size:30px><%= @building_review.title %> </h1>
+    <div class="flex_pic">
+    <div class="profile_text">
 <div class="lowerlog">
 <p> Building: <%= building_reviewed(@building_review) %> </p>
 <p> Reviewed By: <%=reviewed_by_content(@building_review) %> </p>
@@ -13,10 +13,19 @@
 <%else%>
     <p> Would you Renew? Yes </p>
 <%end%>
-
+    </div>
 <p> <%= @building_review.content %> </p>
 <%if @building_review.tenant == current_tenant %>
     <p> <%= link_to "Update Review", edit_building_review_path(@building_review) %> </p>
     <%= button_to "Delete Review", { action: "delete", id: @building_review.id }, method: :delete %>
 <%end%>
+   <br>
+    <br>
 </div>
+    <div class="right">
+    <div class="building_show_down">
+<img class="profilepic" src="<%=@building_review.building.image%>" alt="<%=@building_review.building.address%>">
+    </div>
+    </div>
+    </div>
+  

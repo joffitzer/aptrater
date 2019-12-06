@@ -1,8 +1,8 @@
 <h1 style=font-size:50px><%=@tenant.username%>'s Profile</h1>
-
+    <div class="flex_pic">
+    <div class="profile_text">
 <p>Name: <%= @tenant.name %> </p>
-<img class="profilepic"src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
-<div class="lowerlog">
+    <div class="lowerlog">
 <% if @tenant.building_reviews.count > 0 %>
 <p class="bold">Building Reviews: </p>
 <% @building_reviews.each do |building_review|%>
@@ -33,9 +33,13 @@
 <% if !@tenant.landlord_reviews && !@tenant.building_reviews%>
 <p>You have no reviews. Click below to write a review.</p>
 <%end%>
-</div>
-
+    </div>
 <p> <%= link_to "Review a Landlord", new_landlord_review_path %> </p>
 <p> <%= link_to "Review a Building", new_building_review_path %> </p>
 <p> <%= link_to "Update Profile", edit_tenant_path(@tenant) %> </p>
 <%= button_to "Delete Account", { action: "delete", id: @tenant.id }, method: :delete %>
+    </div>
+    <div class="right">
+<img class="profilepic"src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
+    </div>
+    </div>

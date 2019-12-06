@@ -1,7 +1,7 @@
 <h1 style=font-size:50px><%=@tenant.username%>'s Profile</h1>
-
+    <div class="flex_pic">
+    <div class="profile_text">
 <p>Name: <%= @tenant.name %> </p>
-<img class="profilepic"src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
 <br>
 <div class="lowerlog">
     <% if @overall_avg > 0 %>
@@ -30,5 +30,9 @@
             <p>This tenant has not reviewed any landlords yet.</p>
 <% end %>
     <%end%>
-
 </div>
+</div>
+    <div class="right">
+<img class="profilepic"src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
+    </div>
+    </div>
