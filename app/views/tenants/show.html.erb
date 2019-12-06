@@ -10,7 +10,6 @@
 <p> Review: <%= link_to building_review.title, building_review_path(building_review) %> </p>
 <% rating = (building_review.cleanliness + building_review.noise + building_review.super).to_f / 3 %>
 <p> Overall Rating: <%= rating.round(2) %> </p>
-    <p class="bold">Average Building Rating: <%= @overall_avg.round(2) %></p>
 <hr>
 <% end %>
 <%else%>
@@ -18,12 +17,20 @@
 <p> You have not <%= link_to "reviewed", new_building_review_path%> any buildings.</p>
 <hr>
 <%end%>
+    <% if @tenant.building_reviews.count > 0%>
+    <p>Average Building Rating: <%= @overall_avg.round(2) %></p>
+   <% else %>
+   <p>Average Building Rating: You have not rated any buildings. Click below to review a building!</p>
+
+    <% end %>
+<hr>
     <% if @tenant.landlord_reviews.count > 0 %>
 <p class="bold"> Landlord Reviews: </p>
 <% @landlord_reviews.each do |landlord_review|%>
 <p> Landlord: <%= landlord_reviewed(landlord_review) %> </p>
 <p> Review: <%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </p>
 <p> Overall Rating: <%= landlord_review.rating %> </p>
+<hr>
 <% end %>
 <%else%>
 <p class="bold"> Landlord Reviews: </p>
@@ -38,6 +45,8 @@
 <p> <%= link_to "Review a Building", new_building_review_path %> </p>
 <p> <%= link_to "Update Profile", edit_tenant_path(@tenant) %> </p>
 <%= button_to "Delete Account", { action: "delete", id: @tenant.id }, method: :delete %>
+    <hr>
+    <hr>
     </div>
     <div class="right">
 <img class="profilepic"src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">

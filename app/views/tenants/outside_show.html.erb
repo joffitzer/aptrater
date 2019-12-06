@@ -2,8 +2,7 @@
     <div class="flex_pic">
     <div class="profile_text">
 <p>Name: <%= @tenant.name %> </p>
-<br>
-<div class="lowerlog">
+    <div class="lowerlog">
     <% if @overall_avg > 0 %>
 <p class="bold"> Building Reviews: </p>
 <% @building_reviews.each do |building_review|%>
@@ -13,9 +12,16 @@
 <p> Overall Rating: <%= rating.round(2) %> </p>
 <hr>
 <% end %>
-<br>
-     <p class="bold">Average Building Rating: <%= @overall_avg.round(2) %></p>
-<br>
+<%else%>
+<p class="bold">Building Reviews: </p>
+<p> This tenant has not reviewed any buildings.</p>
+<hr>
+<%end%>
+<%if @tenant.building_reviews.count > 0 %>
+    <p class="bold">Average Building Rating: <%= @overall_avg.round(2) %></p>
+    <% else %>
+    <p> Average Building Rating: This tenant has no reviews.</p>
+     <% end %>
 <hr>
     <% if @tenant.landlord_reviews.count > 0 %>
 <p class="bold"> Landlord Reviews: </p>
@@ -27,9 +33,12 @@
     <%end%>
       <%else%>
       <p class="bold"> Landlord Reviews: </p>
-            <p>This tenant has not reviewed any landlords yet.</p>
+            <p>This tenant has not reviewed any landlords.</p>
+            <br>
 <% end %>
-    <%end%>
+<% if !@tenant.landlord_reviews && !@tenant.building_reviews%>
+<p>This tenant has no reviews.</p>
+<%end%>
 </div>
 </div>
     <div class="right">

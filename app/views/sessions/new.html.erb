@@ -6,6 +6,8 @@ body {
 }
 </style>
 
+<div class="up">
+
 <h1>Log In to your Tenant Profile</h1>
 
 <% if flash[:errors] %>
@@ -15,6 +17,7 @@ body {
 <% if flash[:new_account_message] %>
     <h2> <%= flash[:new_account_message] %> </h2>
 <% end %> 
+</div>
 
 
 <%= form_tag login_path do %>
