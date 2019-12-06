@@ -2,7 +2,9 @@
 <p><%= link_to "Review a Landlord", new_landlord_review_path %></p>
 <%@landlord_reviews.each do |review|%>
 <p>Review: <%= link_to review.title, landlord_review_path(review)%></p>
+<% if review.landlord %>
 <img class="building_thumbnail"src="<%=review.landlord.avatar%>" alt="<%=review.landlord.name%>">
+<%end%>
 <p>Landlord: <%= landlord_reviewed(review)%></p>
 <p>Overall Rating: <%= review.rating %></p>
 <p>Reviewed By: <%= reviewed_by_content(review) %></p>
