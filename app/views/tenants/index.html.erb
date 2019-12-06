@@ -1,4 +1,5 @@
-<h1>All Tenants:</h1>
+<h1 style=font-size:50px>Tenants:</h1>
 <%@tenants.each do |tenant|%>
-<h5><%= link_to tenant.username, tenant_path(tenant) %>
+<p><%= link_to tenant.username, tenant_path(tenant) %></p>
+<img class="thumbnail"src="<%=tenant.avatar%>" alt="<%=tenant.username%>">
 <% end %>

@@ -1,7 +1,8 @@
-<h1>All Buildings:</h1>
+<h1 style=font-size:50px>Buildings:</h1>
 <p><%= link_to "Don't see your building? Click here to add it to the directory", new_building_path %></p>
 <%@buildings.each do |building|%>
-<h5><%= link_to building.address, building_path(building) %></h5>
+<p><%= link_to building.address, building_path(building) %></p>
+<img class="building_thumbnail"src="<%=building.image%>" alt="<%=building.address%>">
 <p>Neighborhood: <%= building.neighborhood %></p>
 <% if building.overall_average.finite? %>
 <p>Overall Rating: <%= building.average_rating.round(2) %></p>

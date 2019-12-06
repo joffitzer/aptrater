@@ -1,23 +1,34 @@
-<h1><%=@tenant.username%>'s Profile</h1>
+<h1 style=font-size:50px><%=@tenant.username%>'s Profile</h1>
 
-<h2>Name: <%= @tenant.name %> </h2>
-<img src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
+<p>Name: <%= @tenant.name %> </p>
+<img class="profilepic"src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
+<br>
+<div class="lowerlog">
     <% if @overall_avg > 0 %>
-        <h5>Average Building Rating: <%= @overall_avg.round(2) %></h5>
-<h3> Building Reviews: </h3>
+<p class="bold"> Building Reviews: </p>
 <% @building_reviews.each do |building_review|%>
-<h5> Building: <%= building_reviewed(building_review) %> </h5>
-<h5> Review: <%= link_to building_review.title, building_review_path(building_review) %> </h5>
+<p> Building: <%= building_reviewed(building_review) %> </p>
+<p> Review: <%= link_to building_review.title, building_review_path(building_review) %> </p>
 <% rating = (building_review.cleanliness + building_review.noise + building_review.super).to_f / 3 %>
-<h5> Overall Rating: <%= rating.round(2) %> </h5>
-<% end %>
+<p> Overall Rating: <%= rating.round(2) %> </p>
 <hr>
-<h3> Landlord Reviews: </h3>
+<% end %>
+<br>
+     <p class="bold">Average Building Rating: <%= @overall_avg.round(2) %></p>
+<br>
+<hr>
+    <% if @tenant.landlord_reviews.count > 0 %>
+<p class="bold"> Landlord Reviews: </p>
 <% @landlord_reviews.each do |landlord_review|%>
-<h5> Landlord: <%= link_to landlord_review.landlord.name, landlord_path(landlord_review.landlord) %> </h5>
-<h5> Review: <%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </h5>
-<h5> Overall Rating: <%= landlord_review.rating %> </h5>
+<p> Landlord: <%= link_to landlord_review.landlord.name, landlord_path(landlord_review.landlord) %> </p>
+<p> Review: <%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </p>
+<p> Overall Rating: <%= landlord_review.rating %> </p>
+<hr>
     <%end%>
       <%else%>
-            <h5>This tenant has not reviewed any buildings yet.</h5>
+      <p class="bold"> Landlord Reviews: </p>
+            <p>This tenant has not reviewed any landlords yet.</p>
 <% end %>
+    <%end%>
+
+</div>

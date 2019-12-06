@@ -29,12 +29,15 @@
 
 <style>
 body {
-  background-color: azure
-  
+  background-color: azure;
+}
+
+div {
+  font-size:medium;
 }
 </style>
-  <body>
 
+<body>
 
     <!-- Navigation -->
 
@@ -64,10 +67,10 @@ body {
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/tenants/<%=current_tenant.id%>">My Profile</a>
           </li>
-
           <li class="d-flex justify-content-end">
             <a class="navbar-brand" href="#"><%= link_to "Log Out", logout_path, method: :delete %></a>
           </li>
+          </div>
  </div>
 
         </ul>
@@ -75,26 +78,15 @@ body {
     </div>
   </nav>
   <% end %>
- <br>
- <br>
- <br>
- <br>
- <br>
 
 
-      <!--<% if logged_in? %>
-  <%= link_to "Buildings", buildings_path %>
-  <%= link_to "Building Reviews", building_reviews_path %>
-  <%= link_to "Landlords", landlords_path %>
-  <%= link_to "Landlord Reviews", landlord_reviews_path %>
-  <%= link_to "Tenants", tenants_path %>
-  <%= link_to "My Profile", tenant_path(current_tenant) %>
-  <% end %>
-    <br>
-    <br>-->
-
+<div class= "body">
 <%= yield %>
-  
+
+<br>
+<br>
+</div>
+
   <!-- Bootstrap core JavaScript -->
   <script src="http://blackrockdigital.github.io/startbootstrap-grayscale/vendor/jquery/jquery.min.js"></script>
   <script src="http://blackrockdigital.github.io/startbootstrap-grayscale/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

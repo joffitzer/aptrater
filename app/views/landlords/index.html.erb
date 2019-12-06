@@ -1,5 +1,7 @@
-<h1>All Landlords:</h1>
+<h1 style=font-size:50px>Landlords:</h1>
 <p><%= link_to "Create a Landlord Account", new_landlord_path %></p>
+<br>
 <%@landlords.each do |landlord|%>
-<h5><%= link_to landlord.name, landlord_path(landlord) %>
+<p><%= link_to landlord.name, landlord_path(landlord) %></p>
+<img class="thumbnail"src="<%=landlord.avatar%>" alt="<%=landlord.name%>">
 <% end %>

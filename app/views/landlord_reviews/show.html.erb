@@ -1,16 +1,16 @@
 <h1><%= @landlord_review.title %> </h1>
 
 <img src="<%=@landlord_review.landlord.avatar%>" alt="<%=@landlord_review.landlord.name%>">
+<div class="lowerlog">
 
-
-<h2> Landlord: <%= landlord_reviewed(@landlord_review) %> </h2>
-<h2> Reviewed By: <%= reviewed_by_content(@landlord_review) %> </h2>
-<h2> Overall Rating: <%= @landlord_review.rating %> </h2>
+<p> Landlord: <%= landlord_reviewed(@landlord_review) %> </p>
+<p> Reviewed By: <%= reviewed_by_content(@landlord_review) %> </p>
+<p> Overall Rating: <%= @landlord_review.rating %> </p>
 
 <% if @landlord_review.hotness == false %>
-    <h2> Is this landlord hot? No ❄️ </h2>
+    <p> Is this landlord hot? No ❄️ </p>
 <%else%>
-    <h2> Is this landlord hot? Yes 🌶</h2>
+    <p> Is this landlord hot? Yes 🌶</p>
 <%end%>
 
 <p> <%= @landlord_review.content %> </p>
@@ -19,3 +19,4 @@
     <p> <%= link_to "Update Review", edit_landlord_review_path(@landlord_review) %> </p>
     <%= button_to "Delete Review", { action: "delete", id: @landlord_review.id }, method: :delete %>
 <%end%>
+</div>

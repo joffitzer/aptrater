@@ -1,21 +1,23 @@
-<h1><%= @building.address %> </h1>
-<img class="image w-45 h-45"src="<%=@building.image%>" alt="<%=@building.address%>">
+<h1 style=font-size:50px><%= @building.address %> </h1>
 
-<h2> Neighborhood: <%= @building.neighborhood %> </h2>
-<h3> Number of Apartments: <%= @building.apt_count %> </h3>
-<h3> Landlord: <%= link_to @building.landlord.name, landlord_path(@building.landlord) %> </h3>
-<h4> <%= @building.description %> </h4>
+<img class="profilepic"src="<%=@building.image%>" alt="<%=@building.address%>">
+<div class="lowerlog">
+<p> <%= link_to "Review this Building", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </p>
+<p> Neighborhood: <%= @building.neighborhood %> </p>
+<p> Number of Apartments: <%= @building.apt_count %> </p>
+<p> Landlord: <%= link_to @building.landlord.name, landlord_path(@building.landlord) %> </p>
+<p> <%= @building.description %> </p>
 <% if @overall_avg > 0 %>
-<h5>Overall Rating: <%= @overall_avg.round(2) %></h5>
-<h5>Average Cleanliness Rating: <%= @avg_cleanliness.round(2) %></h5>
-<h5>Average Super Rating: <%= @avg_super.round(2) %></h5>
-<h5>Average Noise Rating: <%= @avg_noise.round(2) %></h5>
-<h5>Average Renewal Rate: <%= @avg_renewal.round(2) * 100 %>%</h5>
+<p class="bold">Overall Rating: <%= @overall_avg.round(2) %></p>
+<p>Average Cleanliness Rating: <%= @avg_cleanliness.round(2) %></p>
+<p>Average Super Rating: <%= @avg_super.round(2) %></p>
+<p>Average Noise Rating: <%= @avg_noise.round(2) %></p>
+<p>Average Renewal Rate: <%= @avg_renewal.round(2) * 100 %>%</p>
 <% else %>
-<h5>This building has not been reviewed. <%= link_to "Be the first!", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </h5>
+<p>This building has not been reviewed. <%= link_to "Be the first!", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </p>
 <% end %>
 
-<h3>Reviews:</h3>
+<p class="bold">Reviews:</p>
 
 <% @reviews.each do |breview| %>
 Written by: <%= reviewed_by_content(breview) %><br>
@@ -24,10 +26,11 @@ Review: <%= breview.content %><br>
 <hr>
 <% end %>
 
-<p> <%= link_to "Review this Building", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </p>
-
 <p> <%= link_to "Update Building Information", edit_building_path(@building) %> </p>
 
 <p> <%= link_to "View all Buildings", buildings_path %> </p>
 
 <%= button_to "Report Building as Closed", { action: "delete", id: @building.id }, method: :delete %>
+<br>
+<br>
+</div>

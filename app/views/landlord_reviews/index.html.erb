@@ -1,4 +1,4 @@
-<h1>All Landlord Reviews:</h1>
+<h1 style=font-size:50px>Landlord Reviews:</h1>
 <p><%= link_to "Review a Landlord", new_landlord_review_path %></p>
 <%@landlord_reviews.each do |review|%>
 <p>Review: <%= link_to review.title, landlord_review_path(review)%></p>

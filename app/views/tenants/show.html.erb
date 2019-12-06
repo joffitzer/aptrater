@@ -1,37 +1,40 @@
-<h1><%=@tenant.username%>'s Profile</h1>
-<br>
+<h1 style=font-size:50px><%=@tenant.username%>'s Profile</h1>
 
-<h2>Name: <%= @tenant.name %> </h2>
-<img src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
+<p>Name: <%= @tenant.name %> </p>
+<img class="profilepic"src="<%=@tenant.avatar%>" alt="<%=@tenant.username%>">
+<div class="lowerlog">
 <% if @tenant.building_reviews.count > 0 %>
-    <h5>Average Building Rating: <%= @overall_avg.round(2) %></h5>
-<h3>Building Reviews: </h3>
+<p class="bold">Building Reviews: </p>
 <% @building_reviews.each do |building_review|%>
-<h5>Building: <%= building_reviewed(building_review) %> </h5>
-<h5> Review: <%= link_to building_review.title, building_review_path(building_review) %> </h5>
+<p>Building: <%= building_reviewed(building_review) %> </p>
+<p> Review: <%= link_to building_review.title, building_review_path(building_review) %> </p>
 <% rating = (building_review.cleanliness + building_review.noise + building_review.super).to_f / 3 %>
-<h5> Overall Rating: <%= rating.round(2) %> </h5>
+<p> Overall Rating: <%= rating.round(2) %> </p>
+    <p class="bold">Average Building Rating: <%= @overall_avg.round(2) %></p>
+
 <hr>
 <% end %>
 <%else%>
-<h3>Building Reviews: </h3>
-<h5> You have not <%= link_to "reviewed", new_building_review_path%> any buildings.</h5>
+<p class="bold">Building Reviews: </p>
+<p> You have not <%= link_to "reviewed", new_building_review_path%> any buildings.</p>
 <hr>
 <%end%>
     <% if @tenant.landlord_reviews.count > 0 %>
-<h3> Landlord Reviews: </h3>
+<p class="bold"> Landlord Reviews: </p>
 <% @landlord_reviews.each do |landlord_review|%>
-<h5> Landlord: <%= landlord_reviewed(landlord_review) %> </h5>
-<h5> Review: <%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </h5>
-<h5> Overall Rating: <%= landlord_review.rating %> </h5>
+<p> Landlord: <%= landlord_reviewed(landlord_review) %> </p>
+<p> Review: <%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </p>
+<p> Overall Rating: <%= landlord_review.rating %> </p>
 <% end %>
 <%else%>
-<h5> You have not <%= link_to "reviewed", new_landlord_review_path%> any landlords.</h5>
+<p class="bold"> Landlord Reviews: </p>
+<p> You have not <%= link_to "reviewed", new_landlord_review_path%> any landlords.</p>
 <br>
 <%end%>
 <% if !@tenant.landlord_reviews && !@tenant.building_reviews%>
-<h5>You have no reviews. Click below to write a review.</h5>
+<p>You have no reviews. Click below to write a review.</p>
 <%end%>
+</div>
 
 <p> <%= link_to "Review a Landlord", new_landlord_review_path %> </p>
 <p> <%= link_to "Review a Building", new_building_review_path %> </p>

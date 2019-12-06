@@ -1,17 +1,18 @@
 <h1>Name: <%= @landlord.name %> </h1>
 <h1>Nickname: <%= @landlord.nickname %> </h1>
 <img src="<%=@landlord.avatar%>" alt="<%=@landlord.nickname%>">
+<div class="lowerlog">
 <% if @average_rating > 0 %>
-<h3> Average Rating: <%= @average_rating.round(2) %></h3>
-<h3> Reviews: </h3>
+<p class="bold"> Average Rating: <%= @average_rating.round(2) %></p>
+<p class="bold"> Reviews: </p>
 <% @landlord_reviews.each do |landlord_review|%>
-<h5><%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </h5>
-<h5>Reviewed by: <%= link_to landlord_review.tenant.username, tenant_path(landlord_review.tenant) %> </h5>
-<h5>Rating: <%= landlord_review.rating %> </h5>
+<p><%= link_to landlord_review.title, landlord_review_path(landlord_review) %> </p>
+<p>Reviewed by: <%= link_to landlord_review.tenant.username, tenant_path(landlord_review.tenant) %> </p>
+<p>Rating: <%= landlord_review.rating %> </p>
 <hr>
 <% end %>
 <% else %>
-<h3>This landlord has not been <%= link_to "reviewed", "/landlord-reviews/new-specific-review?landlord_id=#{@landlord.id}" %> </h3>
+<p>This landlord has not been <%= link_to "reviewed", "/landlord-reviews/new-specific-review?landlord_id=#{@landlord.id}" %> </p>
 <% end %>
 
 <p> <%= link_to "Review this Landlord", "/landlord-reviews/new-specific-review?landlord_id=#{@landlord.id}" %> </p>
@@ -21,3 +22,6 @@
 <p> <%= link_to "View all Landlords", landlords_path %> </p>
 
 <%= button_to "Retire this Landlord", { action: "delete", id: @landlord.id }, method: :delete %>
+<br>
+<br>
+</div>

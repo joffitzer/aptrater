@@ -1,3 +1,11 @@
+<html>
+
+<style>
+body {
+    background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2013/09/nyc.jpg");
+}
+</style>
+
 <h1>Log In to your Tenant Profile</h1>
 
 <% if flash[:errors] %>
@@ -18,5 +26,8 @@
     <br>
     <%= submit_tag 'Log In' %>
 <% end %>
+<br>
+<h4><%= link_to "Click here to create a new account", signup_path %></h4>
 
-<p><%= link_to "Click here to create a new account", signup_path %></p>
+
+</html>
