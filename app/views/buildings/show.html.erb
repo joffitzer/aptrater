@@ -14,7 +14,7 @@
 <p>Average Noise Rating: <%= @avg_noise.round(2) %></p>
 <p>Average Renewal Rate: <%= (@avg_renewal * 100).round(2) %>%</p>
 <% else %>
-<p>This building has not been reviewed. <%= link_to "Be the first!", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </p>
+<p>This building has not yet been reviewed. <%= link_to "Be the first!", "/building-reviews/new-specific-review?building_id=#{@building.id}" %> </p>
 <% end %>
 
 <p class="bold">Reviews:</p>
