@@ -1,24 +1,17 @@
-# README
+## Rate My Rental
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+As a New Yorker who has experienced subpar apartments, I built Rate My Rental to solve a real-world problem. The result is a Yelp-style application that allows users to submit and view ratings and reviews for both rental properties and landlords<br />
 
-* Ruby version
+### Demo
 
-* System dependencies
+To view a full walkthrough of this app's functionality, please watch [this video demo](https://youtu.be/TCimcQZNzeE).
 
-* Configuration
+### Technologies
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ruby on Rails<br />
+MVC Architecture<br />
+ActiveRecord<br />
+SQLite<br />
+Bootstrap<br />
+Custom CSS<br />
